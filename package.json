@@ -1,18 +1,18 @@
 {
 	"name": "@foxssake/noray",
-	"version": "1.5.2",
+	"version": "1.5.3",
 	"description": "Online multiplayer orchestrator and potential game platform",
-	"main": "src/noray.mjs",
+	"main": "src/noray.ts",
+	"type": "module",
 	"bin": {
-		"noray": "bin/noray.mjs"
+		"noray": "bin/noray.ts"
 	},
 	"scripts": {
-		"lint": "eslint --ext .mjs src",
-		"doc": "jsdoc -c .jsdoc.js src",
+		"lint": "eslint src bin",
 		"test": "node --test test/spec/**/*.test.ts",
-		"test:e2e": "node --test test/e2e/**/*.test.ts | node scripts/taplog.mjs utap \"pino-pretty -c\"",
-		"start": "node bin/noray.mjs | pino-pretty",
-		"start:prod": "NODE_ENV=production node bin/noray.mjs"
+		"test:e2e": "node --test test/e2e/**/*.test.ts | node scripts/taplog.ts utap \"pino-pretty -c\"",
+		"start": "node bin/noray.ts | pino-pretty",
+		"start:prod": "NODE_ENV=production node bin/noray.ts"
 	},
 	"keywords": [
 		"online",
@@ -29,14 +29,16 @@
 		"url": "https://github.com/foxssake/noray/issues"
 	},
 	"devDependencies": {
-		"eslint": "^8.36.0",
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.4.1",
 		"eslint-config-standard": "^17.0.0",
 		"eslint-plugin-import": "^2.25.2",
 		"eslint-plugin-n": "^15.0.0",
 		"eslint-plugin-promise": "^6.0.0",
-		"jsdoc": "^4.0.2",
 		"pino-pretty": "^10.0.0",
-		"sinon": "^15.0.4",
+		"sinon": "^22.0.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.60.1",
 		"utap": "^0.2.0"
 	},
 	"dependencies": {
