@@ -41,28 +41,8 @@ export function readConfig(env: ConfigEnv) {
     },
 
     udpRelay: {
-      ports: required(ports(env.NORAY_UDP_RELAY_PORTS ?? "49152-51200")),
-      timeout: required(duration(env.NORAY_UDP_RELAY_TIMEOUT ?? "30s")),
-      cleanupInterval: required(
-        duration(env.NORAY_UDP_RELAY_CLEANUP_INTERVAL ?? "30s"),
-      ),
-      registrarPort: number(env.NORAY_UDP_REGISTRAR_PORT) ?? 8809,
-
-      maxIndividualTraffic: required(
-        byteSize(env.NORAY_UDP_RELAY_MAX_INDIVIDUAL_TRAFFIC ?? "128kb"),
-      ),
-      maxGlobalTraffic: required(
-        byteSize(env.NORAY_UDP_RELAY_MAX_GLOBAL_TRAFFIC ?? "1gb"),
-      ),
-      trafficInterval: required(
-        duration(env.NORAY_UDP_RELAY_TRAFFIC_INTERVAL ?? "100ms"),
-      ),
-      maxLifetimeDuration: required(
-        duration(env.NORAY_UDP_RELAY_MAX_LIFETIME_DURATION ?? "4hr"),
-      ),
-      maxLifetimeTraffic: required(
-        byteSize(env.NORAY_UDP_RELAY_MAX_LIFETIME_TRAFFIC ?? "4gb"),
-      ),
+      enabled: false,
+      ports: [],
     },
 
     loglevel: getLogLevel(),
