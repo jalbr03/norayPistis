@@ -5,6 +5,11 @@ import { config } from "./config.ts";
 import { NodeSocketReactor } from "@foxssake/trimsock-node";
 import { promiseEvent } from "./utils.ts";
 
+if (process.env.PORT) {
+    process.env.NORAY_HTTP_PORT = process.env.PORT;
+    process.env.NORAY_HTTP = "true";
+}
+
 export type NorayHook = (noray: Noray) => void;
 
 const defaultModules = [
