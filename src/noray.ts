@@ -59,40 +59,39 @@ export class Noray extends EventEmitter {
     await Promise.all(hookPromises);
 
     // Start server
-    this.log.info("Starting TCP server");
-    this.server = this.reactor.serve();
-    this.server.listen(config.socket.port, config.socket.host);
-    this.server.on("listening", () => {
-      this.log.info(
-        "Listening on %s:%s",
-        config.socket.host,
-        config.socket.port,
-      );
+    // this.log.info("Starting TCP server");
+    // this.server = this.reactor.serve();
+    // this.server.listen(config.socket.port, config.socket.host);
+    // this.server.on("listening", () => {
+    //   this.log.info(
+    //     "Listening on %s:%s",
+    //     config.socket.host,
+    //     config.socket.port,
+    //   );
 
-      this.server.on("error", (err) => {
-        this.log.error("Listen socket encountered an error!");
-        this.log.error(err);
-      });
+    //   this.server.on("error", (err) => {
+    //     this.log.error("Listen socket encountered an error!");
+    //     this.log.error(err);
+    //   });
 
-      this.server.on("connection", (conn) => {
-        conn.on("error", (err) => {
-          this.log.error("Connection socket encountered an error!");
-          this.log.error(err);
-        });
-      });
+    //   this.server.on("connection", (conn) => {
+    //     conn.on("error", (err) => {
+    //       this.log.error("Connection socket encountered an error!");
+    //       this.log.error(err);
+    //     });
+    //   });
 
-      this.emit("listening", config.socket.port, config.socket.host);
-    });
+    //   this.emit("listening", config.socket.port, config.socket.host);
+    // });
 
-    await promiseEvent(this, "listening");
+    // await promiseEvent(this, "listening");
     this.log.info("Started noray in %f ms", process.uptime() * 1000.0);
   }
 
   shutdown() {
     this.log.info("Shutting down");
-
     this.emit("close");
-    this.server.close();
+    if (this.server) this.server.close();
   }
 
   get reactor() {
