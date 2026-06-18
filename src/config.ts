@@ -32,7 +32,7 @@ export function readConfig(env: ConfigEnv) {
 
     socket: {
         host: '0.0.0.0',
-        port: 10000, // Setting this to 0 completely disables the raw TCP socket listener
+        port: 0, // Setting this to 0 completely disables the raw TCP socket listener
     },
     http: {
         host: '0.0.0.0',
