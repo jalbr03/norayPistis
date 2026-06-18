@@ -31,13 +31,12 @@ export function readConfig(env: ConfigEnv) {
     },
 
     socket: {
-      host: env.NORAY_SOCKET_HOST ?? "0.0.0.0",
-      port: integer(env.NORAY_SOCKET_PORT) ?? 8890,
+        host: '0.0.0.0',
+        port: 0, // Setting this to 0 completely disables the raw TCP socket listener
     },
-
     http: {
-      host: env.NORAY_HTTP_HOST ?? "0.0.0.0",
-      port: integer(env.NORAY_HTTP_PORT) ?? 8891,
+        host: '0.0.0.0',
+        port: parseInt(process.env.PORT || '10000'), // This forces the web server to use Render's dynamic port
     },
 
     udpRelay: {
